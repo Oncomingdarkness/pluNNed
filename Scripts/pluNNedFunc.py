@@ -1,15 +1,9 @@
-libnames = [('os','os'), ('sys', 'sys'),('numpy', 'np'),('torch','torch'),('torch.nn','nn')]
-for (name, short) in libnames:
-  try:
-    lib = __import__(name)
-  except ImportError:
-    print("Library %s cannot be loaded, exiting" % name)
-    exit(0)
-  else:
-    globals()[short] = lib
+import os
+import sys
+import torch
 from torch import nn
 from NNucleate.trainig import test, train, NNCV, CVTrajectory
-def PLUNNED2(modelpath,trajectorypath,plumedfile='plumed.dat',colvarname='COLVAR',run='no'):
+def PLUNNED(modelpath,trajectorypath,plumedfile='plumed.dat',colvarname='COLVAR',run='no'):
   tf = open(trajectorypath, "r")
   Noatom=int(tf.readline())
   tf.close()
